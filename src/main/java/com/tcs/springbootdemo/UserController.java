@@ -8,17 +8,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class UserController {
+	
 	@Autowired
-	IUserService userService;
+	IUserService userservice;
 	
 	@GetMapping("/getUser")
-	private String getUser() {
-		System.out.println("Called");
-		return "hennlo";
+	public String getuser() {
+		System.out.println("Hello");
+		return "Hello";
 	}
 	
 	@PostMapping("/user")
-	private void saveUser(@RequestBody User user) {
+	public void saveuser(@RequestBody User user) {
+		userservice.save(user);
 		System.out.println(user.getFirstName());
+		
 	}
 }
