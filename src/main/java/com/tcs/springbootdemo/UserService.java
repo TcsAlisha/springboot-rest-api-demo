@@ -14,5 +14,10 @@ public class UserService implements IUserService{
 		userRepository.save(user);
 		System.out.println("Saved");
 	}
+	
+	@Override
+	public Iterable<User> getAllUsers() {
+		return userRepository.findAll();
+	}
 
 }
