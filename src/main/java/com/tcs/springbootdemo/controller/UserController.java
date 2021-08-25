@@ -1,4 +1,4 @@
-package com.tcs.springbootdemo;
+package com.tcs.springbootdemo.controller;
 
 import java.util.Optional;
 
@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.tcs.springbootdemo.User;
+import com.tcs.springbootdemo.exception.UserNotFoundException;
+import com.tcs.springbootdemo.service.IUserService;
 
 @RestController
 @RequestMapping("/user")
