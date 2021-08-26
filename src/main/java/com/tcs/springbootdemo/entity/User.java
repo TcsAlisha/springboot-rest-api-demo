@@ -20,6 +20,7 @@ public class User {//not singleton
 	private Integer id;
 	
 	@Email
+	@NotNull
 	private String email;
 	
 	@NotBlank

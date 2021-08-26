@@ -2,10 +2,12 @@ package com.tcs.springbootdemo.service;
 
 import java.util.Optional;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.tcs.springbootdemo.entity.User;
 import com.tcs.springbootdemo.exception.UserNotFoundException;
@@ -18,9 +20,11 @@ public class UserService implements IUserService {
 	IUserRepository userRepository;
 
 	@Override
+	@Transactional
 	public void save(User user) {
 		userRepository.save(user);
 		logger.debug("Saved");
+		throw new RuntimeException();
 	}
 
 	@Override
