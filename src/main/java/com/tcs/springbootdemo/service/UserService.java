@@ -2,23 +2,25 @@ package com.tcs.springbootdemo.service;
 
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.tcs.springbootdemo.User;
+import com.tcs.springbootdemo.entity.User;
 import com.tcs.springbootdemo.exception.UserNotFoundException;
 import com.tcs.springbootdemo.repository.IUserRepository;
 
 @Service
 public class UserService implements IUserService {
-
+	private static final Logger logger = LoggerFactory.getLogger(User.class);
 	@Autowired
 	IUserRepository userRepository;
 
 	@Override
 	public void save(User user) {
 		userRepository.save(user);
-		System.out.println("Saved");
+		logger.debug("Saved");
 	}
 
 	@Override

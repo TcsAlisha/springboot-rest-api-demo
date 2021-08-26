@@ -2,6 +2,10 @@ package com.tcs.springbootdemo.controller;
 
 import java.util.Optional;
 
+import javax.validation.Valid;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -16,24 +20,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tcs.springbootdemo.User;
+import com.tcs.springbootdemo.entity.User;
 import com.tcs.springbootdemo.exception.UserNotFoundException;
 import com.tcs.springbootdemo.service.IUserService;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
-
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	@Autowired
 	IUserService userservice;
 
 	@GetMapping
-	private Iterable<User> getUser() {
+	public Iterable<User> getUser() {
 		return userservice.getAllUsers();
 	}
 
 	@GetMapping("/{id}")
-	private Optional<User> getUser(@PathVariable("id") Integer id) {
+	public Optional<User> getUser(@PathVariable("id") Integer id) {
 		return userservice.getUser(id);
 	}
 
@@ -43,19 +47,19 @@ public class UserController {
 	}
 
 	@PostMapping
-	private void saveUser(@RequestBody User user) {
+	public void saveUser(@RequestBody @Valid User user) {
 		userservice.save(user);
-		System.out.println(user.getFirstName());
+		logger.debug(user.getFirstName());
 	}
 
 	@PutMapping
-	private void updateUser(@RequestBody User user) {
+	public void updateUser(@RequestBody User user) {
 		userservice.save(user);
-		System.out.println(user.getFirstName());
+		logger.debug(user.getFirstName());
 	}
 	
 	@DeleteMapping("/{id}")
-	private void deleteUser(@PathVariable("id") Integer id) {
+	public void deleteUser(@PathVariable("id") Integer id) {
 		userservice.deleteUser(id);
 	}
 	
